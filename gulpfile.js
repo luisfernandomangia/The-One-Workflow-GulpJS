@@ -47,6 +47,6 @@ gulp.task('compress', function() {
 gulp.task('watch',['browser-sync', 'minify', 'css-min', 'compress'], function () {
     gulp.watch('./assets/js/src/*.js', ['compress']);
     gulp.watch('./assets/html/*.html', ['minify']);
-    gulp.watch('./assets/css/src/*.css', ['css-min']);
+    gulp.watch('./assets/css/*.css', ['css-min']);
     
 });
