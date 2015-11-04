@@ -1,7 +1,6 @@
 var gulp        = require('gulp'),
     imagemin    = require('gulp-imagemin'),
     changed     = require('gulp-changed'),
-    browserSync = require('browser-sync');
     htmlmin = require('gulp-htmlmin');
     cssmin = require('gulp-cssmin');
     rename = require('gulp-rename');
@@ -41,11 +40,12 @@ gulp.task('css-min', function () {
 gulp.task('compress', function() {
   return gulp.src('assets/js/main.js')
     .pipe(uglify())
+	.pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('dist/js'));
 });
  
-gulp.task('watch',['browser-sync', 'minify', 'css-min', 'compress'], function () {
-    gulp.watch('./assets/js/src/*.js', ['compress']);
+gulp.task('watch',['minify', 'css-min', 'compress'], function () {
+    gulp.watch('./assets/js/*.js', ['compress']);
     gulp.watch('./assets/html/*.html', ['minify']);
     gulp.watch('./assets/css/*.css', ['css-min']);
     
