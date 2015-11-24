@@ -2,6 +2,7 @@ var gulp        = require('gulp'),
     imagemin    = require('gulp-imagemin'),
     changed     = require('gulp-changed'),
     htmlmin = require('gulp-htmlmin');
+    browserSync = require('browser-sync');
     cssmin = require('gulp-cssmin');
     rename = require('gulp-rename');
     uglify = require('gulp-uglify');
@@ -18,8 +19,7 @@ gulp.task('jpg', function() {
 gulp.task('browser-sync', function() {
     browserSync.init(['./dist/**'], {
         server: {
-            baseDir: './',
-            index: './dist/index.html'
+            baseDir: './dist/',
         }
     });
 });
@@ -44,7 +44,7 @@ gulp.task('compress', function() {
     .pipe(gulp.dest('dist/js'));
 });
  
-gulp.task('watch',['minify', 'css-min', 'compress'], function () {
+gulp.task('watch',['browser-sync','minify', 'css-min', 'compress'], function () {
     gulp.watch('./assets/js/*.js', ['compress']);
     gulp.watch('./assets/html/*.html', ['minify']);
     gulp.watch('./assets/css/*.css', ['css-min']);
