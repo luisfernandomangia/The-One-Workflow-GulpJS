@@ -1,11 +1,13 @@
 {
   "name": "The-One-workflow-Gulpjs",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "Workflow para um projeto utilizando Gulp",
   "main": "gulpfile.js",
   "dependencies": {
   },
-  "devDependencies": {},
+  "devDependencies": {
+      
+  },
   "scripts": {
     "test": "hello world"
   },

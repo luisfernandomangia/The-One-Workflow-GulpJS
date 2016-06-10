@@ -6,6 +6,7 @@ var gulp        = require('gulp'),
     cssmin = require('gulp-cssmin');
     rename = require('gulp-rename');
     uglify = require('gulp-uglify');
+    sass = require('gulp-sass');
     
 gulp.task('jpg', function() {
     gulp.src('./assets/img/*.jpg')
@@ -23,6 +24,12 @@ gulp.task('browser-sync', function() {
         }
     });
 });
+
+gulp.task('sass', function() {
+    gulp.src('assets/sass/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./dist/css/'))
+}); 
 
 gulp.task('minify', function() {
   return gulp.src('./assets/html/*.html')
@@ -44,9 +51,9 @@ gulp.task('compress', function() {
     .pipe(gulp.dest('dist/js'));
 });
  
-gulp.task('watch',['browser-sync','minify', 'css-min', 'compress'], function () {
+gulp.task('watch',['browser-sync','minify', 'css-min', 'compress', 'sass'], function () {
     gulp.watch('./assets/js/*.js', ['compress']);
     gulp.watch('./assets/html/*.html', ['minify']);
     gulp.watch('./assets/css/*.css', ['css-min']);
-    
+    gulp.watch('./assets/sass/*.scss', ['sass']); 
 });
