@@ -20,27 +20,27 @@ gulp.task('images', () =>
 );
  
 gulp.task('browser-sync', function() {
-    browserSync.init(['./dist/**'], {
+    browserSync.init(['dist/**'], {
         server: {
-            baseDir: './dist/',
+            baseDir: 'dist/',
         }
     });
 });
 
 gulp.task('sass', function() {
-  return  gulp.src('./assets/sass/*.scss')
+  return  gulp.src('assets/sass/*.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./assets/css/'))
+        .pipe(gulp.dest('assets/css/'))
 }); 
 
 gulp.task('minify', function() {
-  return gulp.src('./assets/html/*.html')
+  return gulp.src('assets/html/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('dist/'))
 });
 
 gulp.task('css-min', function () {
-    return gulp.src('./assets/css/*.css')
+    return gulp.src('assets/css/*.css')
         .pipe(cssmin())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('dist/css'));
@@ -54,9 +54,9 @@ gulp.task('compress', function() {
 });
  
 gulp.task('watch',['browser-sync','minify', 'css-min', 'compress', 'sass', 'images'], function () {
-    gulp.watch('./assets/img/*', ['images']);
-    gulp.watch('./assets/js/*.js', ['compress']);
-    gulp.watch('./assets/html/*.html', ['minify']);
-    gulp.watch('./assets/css/*.css', ['css-min']);
-    gulp.watch('./assets/sass/*.scss', ['sass']); 
+    gulp.watch('assets/img/*', ['images']);
+    gulp.watch('assets/js/*.js', ['compress']);
+    gulp.watch('assets/html/*.html', ['minify']);
+    gulp.watch('assets/css/*.css', ['css-min']);
+    gulp.watch('assets/sass/*.scss', ['sass']); 
 });
